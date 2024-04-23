@@ -5,7 +5,6 @@
 Timer::Timer(boost::asio::io_service& p_ioService, TimeoutEventHandler_t p_hdlr) : m_timeoutEventHandler(p_hdlr)
 {
     mp_timer = boost::shared_ptr<boost::asio::steady_timer>(new boost::asio::steady_timer(p_ioService));
-    std::cout << "Timer created" << std::endl;
 }
 
 Timer::~Timer()
