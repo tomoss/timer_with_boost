@@ -10,6 +10,8 @@ class Timer
 public:
     Timer(boost::asio::io_service& p_ioService, TimeoutEventHandler_t p_hdlr);
     ~Timer();
+    Timer(const Timer&) = delete;
+    Timer& operator=(const Timer&) = delete;
     void start(uint32_t p_seconds);
     void cancel();
 
