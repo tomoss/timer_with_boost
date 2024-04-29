@@ -38,7 +38,8 @@ TimerTrigger::~TimerTrigger()
 
 void TimerTrigger::addTimer(const int& p_timerId, TimeoutEventHandler_t p_timeoutEventHandler)
 {
-    m_timersList.emplace(std::piecewise_construct, std::forward_as_tuple(p_timerId), std::forward_as_tuple(m_ioService, p_timeoutEventHandler));
+    m_timersList.emplace(std::piecewise_construct, std::forward_as_tuple(p_timerId), std::forward_as_tuple(p_timeoutEventHandler));
+    m_timersList.at(p_timerId).create(m_ioService);
     std::cout << "Timer " << p_timerId << " added" << std::endl;
 }
 

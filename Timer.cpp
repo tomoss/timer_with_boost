@@ -2,14 +2,19 @@
 #include <iostream>
 #include <boost/bind.hpp>
 
-Timer::Timer(boost::asio::io_service& p_ioService, TimeoutEventHandler_t p_hdlr) : m_timeoutEventHandler(p_hdlr)
+Timer::Timer(TimeoutEventHandler_t p_hdlr) : m_timeoutEventHandler(p_hdlr)
 {
-    mp_timer = boost::shared_ptr<boost::asio::steady_timer>(new boost::asio::steady_timer(p_ioService));
+    
 }
 
 Timer::~Timer()
 {
     this->cancel();
+}
+
+void Timer::create(boost::asio::io_service& p_ioService)
+{
+    mp_timer = boost::shared_ptr<boost::asio::steady_timer>(new boost::asio::steady_timer(p_ioService));
 }
 
 void Timer::start(uint32_t p_seconds)
